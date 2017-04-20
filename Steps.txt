@@ -1,0 +1,10 @@
+Step 1:
+Creating table in mysql:
+create table cricketers(id int not null primary key, name varchar(20));
+
+Step 2:
+Using sqoop to load f.txt
+sqoop export --connect jdbc:mysql://localhost/sqoopDB --username 'root' -P --table 'cricketers' --export-dir 'hdfs://localhost:9000/f.txt'
+
+now load g.txt
+sqoop export --connect jdbc:mysql://localhost/sqoopDB --username 'root' -P --table 'cricketers' --update-key id --update-mode allowinsert --export-dir 'hdfs://localhost:9000/g.txt'
